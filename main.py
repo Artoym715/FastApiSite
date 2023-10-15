@@ -48,7 +48,7 @@ async def edit_user(user_id: int, user_in: UserIn):
             user.email = user_in.email
             user.password = user_in.password
             return UserOut(id=user.id, name=user.name, email=user.email)
-    raise HTTPException(status_code=404, detail='User not found')
+    raise HTTPException(status_code=404, detail='Пользователь не найден!')
 
 
 @app.delete("/users/", response_model=dict)
@@ -56,8 +56,8 @@ async def delete_user(user_id: int):
     for user in users:
         if user.id == user_id:
             users.remove(user)
-            return {'message': 'Task was deleted successfully'}
-    raise HTTPException(status_code=404, detail='User not found')
+            return {'message': 'Пользователь был успешно удален.'}
+    raise HTTPException(status_code=404, detail='Пользователь не найден!')
 
 
 @app.get("/new_user/", response_class=HTMLResponse)
